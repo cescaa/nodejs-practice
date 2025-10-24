@@ -1,0 +1,77 @@
+# Node dependencies
+node_modules/
+# Optional if using pnpm store in project (rare)
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+out/
+lib/
+temp/
+tmp/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs & diagnostics
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.debug/
+coverage/
+.nyc_output/
+lib-cov/
+
+# Caches
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.jest/
+jest-cache/
+.vscode-test/
+
+# Process & runtime files
+pids/
+*.pid
+*.pid.lock
+*.seed
+*.pid.lock
+*.tscache
+*.dmp
+core
+
+# Environment variables (keep examples like .env.example tracked)
+.env
+.env.*
+!.env.example
+!.env*.example
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors/IDEs
+.vscode/
+.idea/
+*.iml
+
+# Tooling
+.sass-cache/
+.browserslistrc.cjs
+.node_repl_history
+
+# Package managers (don’t ignore lockfiles; keep one of these in repo)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Misc
+*.orig

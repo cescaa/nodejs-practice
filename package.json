@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-practice",
+  "version": "1.0.0",
+  "description": "Practicing NodeJS",
+  "homepage": "https://github.com/cescaa/nodejs-practice#readme",
+  "bugs": {
+    "url": "https://github.com/cescaa/nodejs-practice/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cescaa/nodejs-practice.git"
+  },
+  "license": "ISC",
+  "author": "Cesca Dela Cruz",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
