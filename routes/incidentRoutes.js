@@ -7,7 +7,7 @@ router.param("id", incidentController.checkID);
 router
   .route("/")
   .get(incidentController.getAllIncidents)
-  .post(incidentController.createNewIncident);
+  .post(incidentController.checkBody, incidentController.createNewIncident);
 router
   .route("/:id")
   .get(incidentController.getIncident)

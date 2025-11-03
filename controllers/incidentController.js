@@ -16,6 +16,19 @@ exports.checkID = (req, res, next, val) => {
   next();
 };
 
+exports.checkBody = (req, res, next) => {
+  console.log("checkBody function running...");
+  console.log("Req Body DESC: ", req.body.desc);
+  if (!req.body.desc) {
+    console.log("DESC not provided");
+    return res.status(400).json({
+      status: "fail",
+      message: "Body does not contain 'desc'",
+    });
+  }
+  next();
+};
+
 exports.getAllIncidents = (req, res) => {
   res.status(200).json({
     // send json format standard
