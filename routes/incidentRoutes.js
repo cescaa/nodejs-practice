@@ -1,5 +1,6 @@
 const express = require("express");
-const incidentController = require("./../controllers/incidentController");
+const incidentController = require("../controllers/incidentController");
+
 const router = express.Router();
 
 router.param("id", incidentController.checkID);

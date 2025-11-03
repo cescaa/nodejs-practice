@@ -50,6 +50,7 @@ exports.getIncident = (req, res) => {
   const selectedIncident = incidentsData.find(
     (elem) => elem.incident_num === id
   );
+
   res.status(200).json({
     status: "success",
     data: { incident: selectedIncident },
