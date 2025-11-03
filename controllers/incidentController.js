@@ -4,6 +4,18 @@ const incidentsData = [
   { incident_num: 3, desc: "Mock description..." },
 ];
 
+// for middleware
+exports.checkID = (req, res, next, val) => {
+  console.log("Selected ID: ", val);
+  if (req.params.id * 1 > incidentsData.length) {
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid ID",
+    });
+  }
+  next();
+};
+
 exports.getAllIncidents = (req, res) => {
   res.status(200).json({
     // send json format standard
@@ -20,12 +32,7 @@ exports.createNewIncident = (req, res) => {
 
 exports.getIncident = (req, res) => {
   console.log(req.params.id);
-
-  const id = req.params.id * 1; // convert to number type
-  if (id > incidentsData.length)
-    return res
-      .status(404)
-      .json({ status: "fail", message: "Invaid Incident Number" });
+  const id = req.params.id * 1;
 
   const selectedIncident = incidentsData.find(
     (elem) => elem.incident_num === id
@@ -37,11 +44,6 @@ exports.getIncident = (req, res) => {
 };
 
 exports.updateIncident = (req, res) => {
-  if (req.params.id * 1 > incidentsData.length)
-    return res
-      .status(404)
-      .json({ status: "fail", message: "Invalid ID for PATCH" });
-
   res.status(200).json({
     status: "success",
     data: { incident: "Upated data here..." },
@@ -49,11 +51,6 @@ exports.updateIncident = (req, res) => {
 };
 
 exports.deleteIncident = (req, res) => {
-  if (req.params.id * 1 > incidentsData.length)
-    return res
-      .status(404)
-      .json({ status: "fail", message: "Invalid ID for DELETE" });
-
   res.status(204).json({
     status: "success",
     data: null,
