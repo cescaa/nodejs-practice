@@ -1,9 +1,12 @@
+const Incidents = require('../models/incidentModel');
+
 const incidentsData = [
   { incident_num: 1, desc: "Mock description..." },
   { incident_num: 2, desc: "Mock description..." },
   { incident_num: 3, desc: "Mock description..." },
 ];
 
+/*
 // for middleware
 exports.checkID = (req, res, next, val) => {
   console.log("Selected ID: ", val);
@@ -28,33 +31,43 @@ exports.checkBody = (req, res, next) => {
   }
   next();
 };
+*/
 
-exports.getAllIncidents = (req, res) => {
+exports.getAllIncidents = async (req, res) => {
+  try {
+  const allIncidents = await Incidents.find();
   res.status(200).json({
     // send json format standard
     status: "success",
-    results: incidentsData.length,
-    data: { incidents: incidentsData },
+    results: allIncidents.length,
+    data: { incidents: allIncidents },
   });
+} catch(err){
+  res.status(400).json({status: "fail", message: err});
+}
 };
 
-exports.createNewIncident = (req, res) => {
-  console.log(req.body);
-  res.send("Done");
+exports.createNewIncident = async (req, res) => {
+  try {
+ const newIncident = await Incidents.create(req.body);
+ res.status(201).json({status: "success", data: {incident: newIncident}})
+  } catch (err){
+    res.status(400).json({status: "fail", message: err});
+
+  }
 };
 
-exports.getIncident = (req, res) => {
-  console.log(req.params.id);
-  const id = req.params.id * 1;
-
-  const selectedIncident = incidentsData.find(
-    (elem) => elem.incident_num === id
-  );
-
+exports.getIncident = async (req, res) => {
+ try {
+  const incident = await Incidents.findById(req.params.id);
   res.status(200).json({
+    // send json format standard
     status: "success",
-    data: { incident: selectedIncident },
+    data: { incident },
   });
+} catch(err){
+  res.status(400).json({status: "fail", message: err});
+}
 };
 
 exports.updateIncident = (req, res) => {

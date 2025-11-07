@@ -3,12 +3,12 @@ const incidentController = require("../controllers/incidentController");
 
 const router = express.Router();
 
-router.param("id", incidentController.checkID);
+//router.param("id", incidentController.checkID);
 
 router
   .route("/")
   .get(incidentController.getAllIncidents)
-  .post(incidentController.checkBody, incidentController.createNewIncident);
+  .post(incidentController.createNewIncident);
 router
   .route("/:id")
   .get(incidentController.getIncident)
