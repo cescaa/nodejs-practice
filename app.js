@@ -5,6 +5,6 @@ const app = express();
 
 app.use(express.json()); // middleware; provides .body on req
 
-app.use("/api/v1/incidents", incidentRouter);
+app.use("/v1/incidents", incidentRouter);
 
 module.exports = app;
