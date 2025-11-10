@@ -1,7 +1,9 @@
 const express = require("express"); // import express
+const cors = require("cors");
 const incidentRouter = require("./routes/incidentRoutes");
 
 const app = express();
+app.use(cors());
 
 app.use(express.json()); // middleware; provides .body on req
 

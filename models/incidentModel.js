@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 
+mongoose.set('autoIndex', false);     // prevents createIndex on startup
+mongoose.set('autoCreate', false);    // prevents collection creation + indexes
+
 const IncidentSchema = new mongoose.Schema(
   {
-    Incident_ID: {type: String, unique: true, trim: true},
+    Incident_ID: {type: String, trim: true},
 
     // Date & parts
-    Date: { type: Date, index: true, required: true },
+    Date: { type: Date, required: true },
     Year: Number,
     Month: Number,
     Day: Number,
