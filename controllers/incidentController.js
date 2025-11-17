@@ -33,9 +33,29 @@ exports.checkBody = (req, res, next) => {
 };
 */
 
+// /v1/incidents?Date[gte]=2018-01-01&Date[lte]=2018-12-31
 exports.getAllIncidents = async (req, res) => {
   try {
-  const allIncidents = await Incidents.find();
+
+  const queryObj = {...req.query};
+  const excludedFields = ["page", "sort", "limit", "fields"];
+  excludedFields.forEach(elem => delete queryObj[elem])
+
+  let queryStr = JSON.stringify(queryObj);
+  queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+
+
+  const formattedQuery = JSON.parse(queryStr, (key, value) => {
+      if (typeof value === 'string' && value.trim() !== '' && !isNaN(value)) {
+        return Number(value);
+      }
+      return value;
+    });
+
+  const query = Incidents.find(formattedQuery);
+
+  const allIncidents = await query;
+
   res.status(200).json({
     // send json format standard
     status: "success",
